@@ -1,0 +1,45 @@
+# --- Dependencies ---
+node_modules/
+jspm_packages/
+
+# --- Environment / secrets ---
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# --- Build / coverage output ---
+dist/
+build/
+coverage/
+.nyc_output/
+
+# --- Logs ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Local databases (generated at runtime; never commit real data) ---
+database/*.sqlite
+database/*.sqlite3
+*.sqlite
+*.sqlite3
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Misc ---
+*.tmp
+*.temp
+.cache/

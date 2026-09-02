@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Parking Permits</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>College Parking Permit System</h1>
+    <nav id="nav">
+      <button data-view="login" class="nav-btn">Log in</button>
+      <button data-view="register" class="nav-btn">Register</button>
+      <button data-view="apply" class="nav-btn hidden-when-out">Apply for permit</button>
+      <button data-view="dashboard" class="nav-btn hidden-when-out">My permits</button>
+      <button data-view="admin" class="nav-btn hidden-when-out admin-only">Admin</button>
+      <button id="logoutBtn" class="nav-btn hidden-when-out">Log out</button>
+    </nav>
+  </header>
+
+  <main>
+    <p id="flashMessage" class="flash hidden"></p>
+
+    <!-- LOGIN -->
+    <section id="view-login" class="view">
+      <h2>Log in</h2>
+      <p class="hint">Only college employees and students on the authorized list can log in.</p>
+      <form id="loginForm">
+        <label>College email
+          <input type="email" name="email" required autocomplete="username" />
+        </label>
+        <label>Password
+          <input type="password" name="password" required autocomplete="current-password" />
+        </label>
+        <button type="submit">Log in</button>
+      </form>
+    </section>
+
+    <!-- REGISTER -->
+    <section id="view-register" class="view hidden">
+      <h2>Create an account</h2>
+      <p class="hint">
+        Registration only succeeds if your email is on the college's authorized
+        staff/student list. Your status (staff or student) is assigned by the
+        college automatically &mdash; you don't choose it here.
+      </p>
+      <form id="registerForm">
+        <label>College email
+          <input type="email" name="email" required autocomplete="username" />
+        </label>
+        <label>Password
+          <input type="password" name="password" minlength="8" required autocomplete="new-password" />
+          <small>At least 8 characters, including a letter and a number.</small>
+        </label>
+        <button type="submit">Register</button>
+      </form>
+    </section>
+
+    <!-- APPLY FOR PERMIT -->
+    <section id="view-apply" class="view hidden">
+      <h2>Apply for a parking permit</h2>
+      <p class="hint">
+        Your application is re-checked against the college's records on the
+        server. Submitting a status that doesn't match what the college has on
+        file for you will result in rejection.
+      </p>
+      <form id="applyForm">
+        <label>College status
+          <select name="collegeStatus" required>
+            <option value="">Select...</option>
+            <option value="student">Student</option>
+            <option value="staff">Staff</option>
+          </select>
+        </label>
+
+        <fieldset>
+          <legend>Vehicle details</legend>
+          <label>License plate number
+            <input type="text" name="plateNumber" required maxlength="12" />
+          </label>
+          <label>Make
+            <input type="text" name="make" required maxlength="50" />
+          </label>
+          <label>Model
+            <input type="text" name="model" required maxlength="50" />
+          </label>
+          <label>Color
+            <input type="text" name="color" required maxlength="30" />
+          </label>
+          <label>Year
+            <input type="number" name="year" required min="1980" max="2100" />
+          </label>
+        </fieldset>
+
+        <button type="submit">Submit application</button>
+      </form>
+      <div id="applyResult"></div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="view-dashboard" class="view hidden">
+      <h2>My permits</h2>
+      <div id="permitsList">Loading&hellip;</div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="view-admin" class="view hidden">
+      <h2>Admin</h2>
+      <h3>All permit requests</h3>
+      <div id="adminPermitsList">Loading&hellip;</div>
+      <h3>Authorized users list</h3>
+      <div id="adminAuthorizedList">Loading&hellip;</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Demo application &mdash; not for production use with real personal data without a security review.</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
