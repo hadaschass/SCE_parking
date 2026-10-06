@@ -260,9 +260,3 @@ apply/dashboard forms.
 No license has been added yet — the repository owner has not selected one.
 Until a license is added, all rights are reserved by default and this code
 should not be reused without asking the owner.
-
-## Also in this repository
-
-`carbon-footprint/` holds a separate, self-contained app that estimates the
-carbon footprint of medical products, such as a latex glove. See
-[carbon-footprint/README.md](carbon-footprint/README.md).
