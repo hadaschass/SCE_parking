@@ -260,3 +260,18 @@ apply/dashboard forms.
 No license has been added yet — the repository owner has not selected one.
 Until a license is added, all rights are reserved by default and this code
 should not be reused without asking the owner.
+
+## Weather by email
+
+`public/weather.html` (served at `http://localhost:3000/weather.html`) asks
+for a location, e.g. "Beit Kama", and emails that location's current weather
+to `hadasch@ac.sce.ac.il`.
+
+- `POST /api/weather/email` with `{ "location": "Beit Kama" }`
+- Weather data comes from [Open-Meteo](https://open-meteo.com/), which needs no API key.
+- Mail is sent over SMTP. Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`,
+  `SMTP_PASS` and `MAIL_FROM` in `.env` (see `.env.example`). For Gmail,
+  use `smtp.gmail.com`, port `465`, and an app password.
+- The recipient is fixed on the server (`WEATHER_EMAIL_TO`, which defaults to
+  `hadasch@ac.sce.ac.il`), so the endpoint can't be used to send mail to
+  other addresses. Requests are rate-limited to 10 per 15 minutes.
