@@ -294,3 +294,6 @@ using transformers.js, running locally in Node. It then compares the vectors
 with cosine similarity. The model (~23 MB) downloads from Hugging Face the
 first time it's used, so the first request is slow, and it's cached after
 that. You can set `EMBEDDING_MODEL` to use a different model.
+
+A standalone copy of this page, with its own `package.json` and server, is in
+[`similarity-app/`](similarity-app/). Its README explains how to run it.

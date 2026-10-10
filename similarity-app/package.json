@@ -1,0 +1,18 @@
+{
+  "name": "traits-vs-tech-roles",
+  "version": "1.0.0",
+  "description": "Compare 5 personal characteristics with 3 technology roles by semantic similarity, shown visually and numerically.",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.1",
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
