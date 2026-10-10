@@ -10,7 +10,6 @@ const authRoutes = require('./routes/auth.routes');
 const permitRoutes = require('./routes/permit.routes');
 const adminRoutes = require('./routes/admin.routes');
 const weatherRoutes = require('./routes/weather.routes');
-const similarityRoutes = require('./routes/similarity.routes');
 const { notFoundHandler, errorHandler } = require('./middleware/errorHandler');
 
 function createApp() {
@@ -33,7 +32,6 @@ function createApp() {
   app.use('/api/permits', permitRoutes);
   app.use('/api/admin', adminRoutes);
   app.use('/api/weather', weatherRoutes);
-  app.use('/api/similarity', similarityRoutes);
 
   // Simple static frontend (plain HTML/CSS/JS) that talks to the API above.
   app.use(express.static(path.join(__dirname, '..', 'public')));

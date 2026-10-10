@@ -275,25 +275,3 @@ to `hadasch@ac.sce.ac.il`.
 - The recipient is fixed on the server (`WEATHER_EMAIL_TO`, which defaults to
   `hadasch@ac.sce.ac.il`), so the endpoint can't be used to send mail to
   other addresses. Requests are rate-limited to 10 per 15 minutes.
-
-## Traits vs tech roles (semantic similarity)
-
-`public/similarity.html` (at `http://localhost:3000/similarity.html`) asks for
-5 personal characteristics and 3 technology roles. It then shows how close
-they are in meaning, both as numbers and as charts:
-
-- **Closest role overall:** the role with the highest average similarity to all 5 characteristics.
-- **Overall fit per role:** a bar chart of those averages.
-- **Heatmap:** the cosine similarity between every characteristic and every role, with each row's best match outlined.
-- **Semantic map:** all 8 items projected to 2D with PCA, with each characteristic linked to its closest role.
-
-How it works: `POST /api/similarity` with `{ "traits": [5 strings], "roles": [3 strings] }`
-embeds each phrase with the sentence-embedding model
-[`Xenova/all-MiniLM-L6-v2`](https://huggingface.co/Xenova/all-MiniLM-L6-v2)
-using transformers.js, running locally in Node. It then compares the vectors
-with cosine similarity. The model (~23 MB) downloads from Hugging Face the
-first time it's used, so the first request is slow, and it's cached after
-that. You can set `EMBEDDING_MODEL` to use a different model.
-
-A standalone copy of this page, with its own `package.json` and server, is in
-[`similarity-app/`](similarity-app/). Its README explains how to run it.
