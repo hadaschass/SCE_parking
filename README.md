@@ -70,18 +70,25 @@ college's own record for them.
 
 ## Installation
 
+Run these in a terminal (PowerShell or Command Prompt on Windows, Terminal
+on macOS/Linux, or VS Code's built-in terminal):
+
 ```bash
-git clone <your-fork-or-repo-url>
-cd college-parking-permit-system
+git clone https://github.com/hadaschass/SCE_parking.git
+cd SCE_parking
 npm install
 ```
+
+All remaining commands in this README must be run from inside the
+`SCE_parking` folder (the one containing `package.json`).
 
 ## Environment configuration
 
 Copy the example file and fill in real values for your machine:
 
 ```bash
-cp .env.example .env
+cp .env.example .env          # macOS / Linux
+copy .env.example .env        # Windows (Command Prompt or PowerShell)
 ```
 
 `.env` is git-ignored and must never be committed. See `.env.example` for
@@ -91,6 +98,18 @@ minimum you must set `JWT_SECRET` to a long random value, for example:
 ```bash
 openssl rand -hex 32
 ```
+
+Any long random string of letters and digits works, e.g.
+`JWT_SECRET=k3J9x7Qm2Lp8Zr5Tw1Yv6Nb4Hc0Gd8Fs2Ae7Ru`. The file must be named
+exactly `.env` (not `.env.txt`) and live in the project root. On Windows
+PowerShell you can create a working one in a single command:
+
+```powershell
+Set-Content -Path .env -Encoding ascii -Value "JWT_SECRET=replace_with_a_long_random_value","PORT=3001"
+```
+
+(Avoid `echo ... > .env` in PowerShell — it writes UTF-16, which the app
+cannot read.)
 
 ## Database setup, migrations, and seed data
 
@@ -132,8 +151,56 @@ npm run dev
 npm start
 ```
 
-By default the server listens on `http://localhost:3000`. The static
-frontend is served at `/`, and the API is under `/api`.
+When it starts you will see `Parking permit server listening on port <PORT>`.
+Open `http://localhost:<PORT>` in a browser — the port is `3000` by default,
+or whatever you set as `PORT` in `.env`. The static frontend is served at
+`/`, and the API is under `/api`. Keep the terminal open while using the app;
+press `Ctrl+C` to stop it.
+
+If port 3000 is already used by another program on your computer, add
+`PORT=3001` (or any free port) to `.env` and open `http://localhost:3001`
+instead. The examples below use `3000`; substitute your port if you changed
+it.
+
+### Demo login accounts
+
+After `npm run db:seed`, ready-made demo accounts exist. Their emails and
+(demo-only) passwords are listed in
+`database/seeders/20260101000020-demo-full-accounts.js` — e.g.
+`omer.weiss@sce.ac.il` / `i7tG393BQE`.
+
+### Troubleshooting
+
+**`Missing required environment variable(s): JWT_SECRET`** — the server could
+not find `JWT_SECRET` in a `.env` file in the folder you started it from.
+Check that you are inside `SCE_parking`, that the file is named exactly
+`.env` (run `dir` on Windows / `ls -a` on macOS to check for `.env.txt`), and
+that it contains a line `JWT_SECRET=<value>` with no spaces around `=`.
+
+As a quick workaround you can skip `.env` and set the variables just for the
+current terminal session:
+
+```powershell
+# Windows PowerShell
+$env:JWT_SECRET="replace_with_a_long_random_value"; $env:PORT="3001"; npm start
+```
+
+```cmd
+:: Windows Command Prompt
+set JWT_SECRET=replace_with_a_long_random_value
+set PORT=3001
+npm start
+```
+
+```bash
+# macOS / Linux
+JWT_SECRET=replace_with_a_long_random_value PORT=3001 npm start
+```
+
+**A different application appears at `localhost:3000`** — another program is
+already using that port, and this server did not start (check the terminal
+for errors). Stop the other program, or set `PORT=3001` as described above
+and open `http://localhost:3001`.
 
 ## How to run tests
 
