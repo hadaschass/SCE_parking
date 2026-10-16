@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather by Email</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Weather by Email</h1>
+    <nav><a class="nav-btn" href="index.html">Parking permits</a></nav>
+  </header>
+
+  <main>
+    <p id="flashMessage" class="flash hidden"></p>
+
+    <section class="view">
+      <h2>Send the weather</h2>
+      <p class="hint">Enter a location. Its current weather will be emailed to <strong>hadasch@ac.sce.ac.il</strong>.</p>
+      <form id="weatherForm">
+        <label>Location
+          <input type="text" name="location" placeholder="e.g. Beit Kama" minlength="2" maxlength="100" required />
+        </label>
+        <button type="submit">Send weather</button>
+      </form>
+      <div id="weatherResult" class="permit-card hidden"></div>
+    </section>
+  </main>
+
+  <script src="js/weather.js"></script>
+</body>
+</html>
